@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>皇室战争 · 免费奖励</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eef2f8;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c97e00, #f5b042);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero h1 i {
+            background: none;
+            color: #f5b042;
+            font-size: 2rem;
+        }
+
+        .sub {
+            color: #475569;
+            margin-top: 10px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-left: 3px solid #f5b042;
+            padding-left: 16px;
+        }
+
+        .rewards-grid {
+            background: #ffffff;
+            border-radius: 1.8rem;
+            overflow-x: auto;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eef2f8;
+        }
+
+        .reward-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .reward-table th:nth-child(1),
+        .reward-table td:nth-child(1) {
+            width: 25%;
+        }
+        .reward-table th:nth-child(2),
+        .reward-table td:nth-child(2) {
+            width: 30%;
+        }
+        .reward-table th:nth-child(3),
+        .reward-table td:nth-child(3) {
+            width: 15%;
+        }
+        .reward-table th:nth-child(4),
+        .reward-table td:nth-child(4) {
+            width: 15%;
+        }
+        .reward-table th:nth-child(5),
+        .reward-table td:nth-child(5) {
+            width: 15%;
+        }
+
+        .reward-table th,
+        .reward-table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 1rem 0.8rem;
+        }
+
+        .reward-table th {
+            background: #fafcff;
+            font-weight: 700;
+            color: #2c3e66;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1.2rem 0.8rem;
+        }
+
+        .reward-table td {
+            border-bottom: 1px solid #f0f2f6;
+            color: #1e293b;
+            word-break: break-word;
+        }
+
+        .reward-table tr:hover {
+            background: #fef9ef;
+        }
+
+        .reward-name {
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        /* 多图展示容器 */
+        .preview-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .preview-img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #f8fafc;
+            padding: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        /* 桌面端可以略大，移动端缩小 */
+        @media (min-width: 701px) {
+            .preview-img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        .preview-img:hover {
+            transform: scale(1.05);
+        }
+        .preview-placeholder {
+            width: 65px;
+            height: 65px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #fef3e8;
+            border-radius: 16px;
+            font-size: 1.6rem;
+            color: #f5a623;
+        }
+        @media (min-width: 701px) {
+            .preview-placeholder {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+        }
+
+        .link-cell a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 0.8rem;
+            word-break: break-all;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .link-cell a:hover {
+            color: #f5b042;
+            text-decoration: underline;
+        }
+        .link-note {
+            font-size: 0.7rem;
+            color: #6c757d;
+            margin-bottom: 4px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            width: fit-content;
+            background: #f1f5f9;
+            color: #334155;
+        }
+        .status-badge.available {
+            color: #15803d;
+        }
+        .status-badge.expired {
+            color: #c0392b;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+
+        @media (max-width: 700px) {
+            body { padding: 1rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .reward-table th, .reward-table td { padding: 0.6rem 0.4rem; }
+            .reward-name { font-size: 0.8rem; white-space: normal; }
+            .status-badge { padding: 3px 10px; font-size: 0.7rem; }
+            .link-note { font-size: 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <h1>
+            <i class="fas fa-chess-queen"></i> 皇室战争 · 免费奖励
+        </h1>
+        <div class="sub">
+            查询免费奖励领取状态
+        </div>
+    </div>
+
+    <div class="rewards-grid">
+        <table class="reward-table">
+            <thead>
+                <tr><th>奖励</th><th>预览</th><th>领取地址</th><th>有效日期</th><th>状态</th></tr>
+            </thead>
+            <tbody id="rewardTableBody"></tbody>
+        </table>
+    </div>
+    <footer>
+        <i class="fas fa-tower-cell"></i> 所有奖励基于官方及创作者提供。若锁区，类型：线上商店不能领取，类型：代码可采用切号方法领取。
+    </footer>
+</div>
+
+<script>
+    const REWARDS_DATA = [
+        {
+            id: "reward_001",
+            name: "1星幸运宝箱",
+            imgSrc: "img/1_star_lucky_chest.png",
+            link: "https://link.clashroyale.com/?action=voucher&code=9f310d9a-0e1d-4e9c-b6d9-71c09a8e9fb0",
+            expiryText: "未知",
+            status: "available"
+        },
+        {
+            id: "reward_002",
+            name: "3星幸运宝箱+200普通外卡+50000金币",
+            imgSrc: "img/3_star_lucky_chest.png, img/normal_wild_card.png, img/gold.png",
+            link: "https://link.clashroyale.com/?action=voucher&code=0993f400-a602-41c7-a9b6-5c701777f7d7",
+            expiryText: "未知",
+            status: "available"
+        },
+        {
+            id: "reward_003",
+            name: "进化苍蝇海表情",
+            imgSrc: "img/emote_evo_minion_horde.png",
+            link: "https://store.supercell.com/zh-cn/clashroyale?storeCode=MINIONHORDE%21",
+            expiryText: "未知",
+            status: "available"
+        },
+        {
+            id: "reward_004",
+            name: "十周年野猪表情",
+            imgSrc: "img/10th_emote_hog_rider.png",
+            link: " https://link.clashroyale.com/?action=voucher&code=4e2bceb9-d231-4d54-a331-5b8d08005c86",
+            expiryText: "未知",
+            status: "available"
+        },
+        {
+            id: "reward_005",
+            name: "十周年战旗套装",
+            imgSrc: "img/10th_banner_decoration.png, img/10th_banner_frame.png,",
+            link: "https://link.clashroyale.com/?action=voucher&code=f9a8c8fa-8844-4e3d-99df-8c01de1d8862",
+            expiryText: "未知",
+            status: "available"
+        },
+        {
+            id: "reward_005",
+            name: "盾卫表情",
+            imgSrc: "img/emote_guards.png,",
+            link: "https://link.clashroyale.com/?action=voucher&code=6884f0e3-367c-4449-93ef-fb4e17ac55a1",
+            expiryText: "未知",
+            status: "available"
+        }
+    ];
+
+    function getLinkNote(link) {
+        if (!link) return '';
+        if (link.includes('action=voucher')) return '类型：链接';
+        if (link.includes('storeCode')) return '类型：代码';
+        if (link.includes('onlineshop')) return '类型：线上商店';
+        return '';
+    }
+
+    function getStatusInfo(status) {
+        if (status === "available") {
+            return { text: "可领取", icon: "fa-circle-check", class: "available" };
+        } else {
+            return { text: "已过期", icon: "fa-calendar-times", class: "expired" };
+        }
+    }
+
+    function parseImageList(imgSrcField) {
+        if (!imgSrcField) return [];
+        if (typeof imgSrcField === 'string' && imgSrcField.includes(',')) {
+            return imgSrcField.split(',').map(s => s.trim()).filter(s => s);
+        }
+        return [imgSrcField];
+    }
+
+    function createImageElement(src, alt) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = alt;
+        img.className = 'preview-img';
+        img.onerror = function() {
+            if (img.parentNode && !img.parentNode.querySelector('.preview-placeholder')) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'preview-placeholder';
+                placeholder.innerHTML = '<i class="fas fa-chess-board"></i>';
+                img.style.display = 'none';
+                img.parentNode.appendChild(placeholder);
+            }
+            img.onerror = null;
+        };
+        return img;
+    }
+
+    function renderTable() {
+        const tbody = document.getElementById("rewardTableBody");
+        if (!tbody) return;
+        tbody.innerHTML = "";
+
+        REWARDS_DATA.forEach(reward => {
+            const statusInfo = getStatusInfo(reward.status);
+            const tr = document.createElement("tr");
+
+            const tdName = document.createElement("td");
+            tdName.innerHTML = `<div class="reward-name"><i class="fas fa-chest" style="color:#e09d32;"></i>${reward.name}</div>`;
+
+            const tdPreview = document.createElement("td");
+            const gallery = document.createElement("div");
+            gallery.className = "preview-gallery";
+            
+            const imagePaths = parseImageList(reward.imgSrc);
+            if (imagePaths.length === 0) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'preview-placeholder';
+                placeholder.innerHTML = '<i class="fas fa-image"></i>';
+                gallery.appendChild(placeholder);
+            } else {
+                imagePaths.forEach(src => {
+                    const img = createImageElement(src, reward.name);
+                    gallery.appendChild(img);
+                });
+            }
+            tdPreview.appendChild(gallery);
+
+            const tdLink = document.createElement("td");
+            tdLink.className = "link-cell";
+            const linkNote = getLinkNote(reward.link);
+            tdLink.innerHTML = `<a href="${reward.link}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> 前往兑换</a>
+                                               ${linkNote ? `<div class="link-note">${linkNote}</div>` : ''}`;
+
+            const tdExpiry = document.createElement("td");
+            tdExpiry.innerHTML = `<span><i class="far fa-calendar-alt"></i> ${reward.expiryText}</span>`;
+
+            const tdStatus = document.createElement("td");
+            tdStatus.innerHTML = `<div class="status-badge ${statusInfo.class}"><i class="fas ${statusInfo.icon}"></i> ${statusInfo.text}</div>`;
+
+            tr.appendChild(tdName);
+            tr.appendChild(tdPreview);
+            tr.appendChild(tdLink);
+            tr.appendChild(tdExpiry);
+            tr.appendChild(tdStatus);
+            tbody.appendChild(tr);
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        renderTable();
+    });
+</script>
+</body>
+</html>
