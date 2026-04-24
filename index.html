@@ -131,7 +131,6 @@
             white-space: nowrap;
         }
 
-        /* 多图展示容器 */
         .preview-gallery {
             display: flex;
             flex-wrap: wrap;
@@ -149,7 +148,7 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             transition: transform 0.2s ease;
         }
-        /* 桌面端可以略大，移动端缩小 */
+
         @media (min-width: 701px) {
             .preview-img {
                 width: 80px;
@@ -262,7 +261,7 @@
     const REWARDS_DATA = [
         {
             id: "reward_001",
-            name: "1星幸运宝箱",
+            name: "一星幸运宝箱",
             imgSrc: "img/1_star_lucky_chest.png",
             link: "https://link.clashroyale.com/?action=voucher&code=9f310d9a-0e1d-4e9c-b6d9-71c09a8e9fb0",
             expiryText: "未知",
@@ -270,7 +269,7 @@
         },
         {
             id: "reward_002",
-            name: "3星幸运宝箱+200普通外卡+50000金币",
+            name: "三星幸运宝箱+200普通外卡+50000金币",
             imgSrc: "img/3_star_lucky_chest.png, img/normal_wild_card.png, img/gold.png",
             link: "https://link.clashroyale.com/?action=voucher&code=0993f400-a602-41c7-a9b6-5c701777f7d7",
             expiryText: "未知",
@@ -301,10 +300,42 @@
             status: "available"
         },
         {
-            id: "reward_005",
+            id: "reward_006",
             name: "盾卫表情",
             imgSrc: "img/emote_guards.png,",
             link: "https://link.clashroyale.com/?action=voucher&code=6884f0e3-367c-4449-93ef-fb4e17ac55a1",
+            expiryText: "未知",
+            status: "available"
+        },
+        {
+            id: "reward_007",
+            name: "一星幸运宝箱*2",
+            imgSrc: "img/1_star_lucky_chest_2.png,",
+            link: "https://link.clashroyale.com/?action=voucher&code=b31e39ff-dc2a-40fc-9b56-fb8928528a76",
+            expiryText: "未知",
+            status: "available"
+        },
+        {
+            id: "reward_008",
+            name: "二星幸运宝箱",
+            imgSrc: "img/2_star_lucky_chest.png,",
+            link: "https://link.clashroyale.com/? action=voucher&code=e4a38491-9d8a-478e-9680-387ff18f52b2",
+            expiryText: "未知",
+            status: "available"
+        },
+        {
+            id: "reward_009",
+            name: "战旗边框龙",
+            imgSrc: "img/banner_frame_dragon.png,",
+            link: "https://link.clashroyale.com/?action=voucher&code=07c4911e-da46-434b-935a-f82c1da715ef",
+            expiryText: "未知",
+            status: "available"
+        },
+        {
+            id: "reward_010",
+            name: "战旗装饰龙",
+            imgSrc: "img/banner_decoration_dragon.png,",
+            link: "https://link.clashroyale.com/?action=voucher&code=ce494ac0-2c9b-4a2f-8182-e99ebad369cf",
             expiryText: "未知",
             status: "available"
         }
