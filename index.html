@@ -1,885 +1,801 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>皇室战争免费奖励</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>皇室战争 · 免费奖励 / Clash Royale Free Rewards</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root{
+    --gold-1:#f9c05a;
+    --gold-2:#e08a1e;
+    --gold-soft:#fef6e7;
+    --ink:#0f172a;
+    --ink-2:#334155;
+    --muted:#64748b;
+    --line:#e9eef6;
+    --line-strong:#dbe4f0;
+    --card:#ffffff;
+    --ok:#15803d;
+    --ok-bg:#e7f7ee;
+    --no:#c0392b;
+    --no-bg:#fdeceb;
+    --blue:#2563eb;
+    --blue-bg:#eff5ff;
+    --radius:22px;
+    --shadow-sm:0 1px 2px rgba(15,23,42,.04), 0 4px 14px rgba(15,23,42,.04);
+    --shadow-md:0 2px 6px rgba(15,23,42,.04), 0 18px 40px rgba(15,23,42,.07);
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #ffffff;
-            min-height: 100vh;
-            padding: 2rem 1.5rem;
-            color: #1e293b;
-        }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+html{scroll-behavior:smooth;}
 
-        .hero {
-            background: #ffffff;
-            border-radius: 2rem;
-            padding: 1.8rem 2.2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.03);
-            border: 1px solid #eef2f8;
-        }
+body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    min-height:100vh;
+    padding:2.2rem 1.5rem 3rem;
+    color:var(--ink);
+    background:
+        radial-gradient(1100px 520px at 85% -12%, rgba(249,192,90,.20), transparent 62%),
+        radial-gradient(900px 480px at -5% 5%, rgba(37,99,235,.10), transparent 58%),
+        #f5f7fc;
+    -webkit-font-smoothing:antialiased;
+}
 
-        .hero h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #c97e00, #f5b042);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-        }
+.container{max-width:1360px;margin:0 auto;}
 
-        .hero h1 i {
-            background: none;
-            color: #f5b042;
-            font-size: 2rem;
-        }
+/* ---------- HERO ---------- */
+.hero{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:1.7rem 1.9rem;
+    margin-bottom:1.4rem;
+    box-shadow:var(--shadow-md);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1.5rem;
+    flex-wrap:wrap;
+    overflow:hidden;
+}
+.hero::after{
+    content:"";
+    position:absolute;
+    right:-80px;top:-120px;
+    width:300px;height:300px;
+    background:radial-gradient(circle, rgba(249,192,90,.16), transparent 65%);
+    pointer-events:none;
+}
+.hero-left{display:flex;align-items:center;gap:1.1rem;min-width:0;}
+.crown{
+    flex:none;
+    width:58px;height:58px;
+    border-radius:18px;
+    display:grid;place-items:center;
+    font-size:1.55rem;
+    color:#fff;
+    background:linear-gradient(140deg,var(--gold-1),var(--gold-2));
+    box-shadow:0 10px 22px rgba(224,138,30,.32);
+}
+.hero h1{
+    font-size:1.95rem;
+    font-weight:800;
+    letter-spacing:-.02em;
+    line-height:1.2;
+    background:linear-gradient(135deg,#b87500,#f5b042 55%,#e08a1e);
+    -webkit-background-clip:text;background-clip:text;
+    color:transparent;
+}
+.sub{
+    color:var(--muted);
+    margin-top:.45rem;
+    font-weight:500;
+    font-size:.92rem;
+    line-height:1.5;
+}
+.hero-right{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;z-index:1;}
 
-        .sub {
-            color: #475569;
-            margin-top: 10px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            border-left: 3px solid #f5b042;
-            padding-left: 16px;
-        }
+/* ---------- LANGUAGE SWITCH ---------- */
+.lang-switch{
+    display:inline-flex;
+    background:#f1f5fb;
+    border:1px solid var(--line-strong);
+    border-radius:999px;
+    padding:4px;
+    gap:2px;
+}
+.lang-switch button{
+    border:0;
+    background:transparent;
+    font-family:inherit;
+    font-size:.82rem;
+    font-weight:700;
+    letter-spacing:.02em;
+    color:var(--muted);
+    padding:7px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:.25s;
+    display:inline-flex;align-items:center;gap:6px;
+}
+.lang-switch button:hover{color:var(--ink-2);}
+.lang-switch button.active{
+    background:#fff;
+    color:var(--gold-2);
+    box-shadow:0 1px 3px rgba(15,23,42,.10);
+}
 
-        .rewards-grid {
-            background: #ffffff;
-            border-radius: 1.8rem;
-            overflow-x: auto;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
-            border: 1px solid #eef2f8;
-        }
+/* ---------- STATS ---------- */
+.stats{display:flex;gap:.55rem;flex-wrap:wrap;}
+.stat{
+    display:inline-flex;align-items:center;gap:7px;
+    background:#f8fafc;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 15px;
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--ink-2);
+    cursor:pointer;
+    transition:.2s;
+    user-select:none;
+}
+.stat:hover{transform:translateY(-1px);border-color:var(--line-strong);}
+.stat .n{
+    font-size:.95rem;
+    font-weight:800;
+    color:var(--ink);
+}
+.stat.active{background:var(--gold-soft);border-color:#f6dca8;color:#8a5a00;}
+.stat.active .n{color:var(--gold-2);}
+.stat i{font-size:.75rem;opacity:.8;}
 
-        .reward-table {
-            width: 100%;
-            table-layout: fixed;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
+/* ---------- TOOLBAR ---------- */
+.toolbar{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;flex-wrap:wrap;
+    margin-bottom:1rem;
+    padding:0 .3rem;
+}
+.search{
+    position:relative;
+    flex:1 1 260px;
+    max-width:340px;
+}
+.search i{
+    position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    color:#94a3b8;font-size:.82rem;pointer-events:none;
+}
+.search input{
+    width:100%;
+    font-family:inherit;
+    font-size:.86rem;
+    color:var(--ink);
+    padding:11px 14px 11px 36px;
+    border:1px solid var(--line-strong);
+    border-radius:14px;
+    background:#fff;
+    outline:none;
+    transition:.2s;
+    box-shadow:var(--shadow-sm);
+}
+.search input:focus{border-color:#f3cf8e;box-shadow:0 0 0 3px rgba(249,192,90,.18);}
+.search input::placeholder{color:#a3aec0;}
 
-        .reward-table th:nth-child(1),
-        .reward-table td:nth-child(1) {
-            width: 22%;
-        }
-        .reward-table th:nth-child(2),
-        .reward-table td:nth-child(2) {
-            width: 25%;
-        }
-        .reward-table th:nth-child(3),
-        .reward-table td:nth-child(3) {
-            width: 10%;
-        }
-        .reward-table th:nth-child(4),
-        .reward-table td:nth-child(4) {
-            width: 18%;
-        }
-        .reward-table th:nth-child(5),
-        .reward-table td:nth-child(5) {
-            width: 12%;
-        }
-        .reward-table th:nth-child(6),
-        .reward-table td:nth-child(6) {
-            width: 13%;
-        }
+/* ---------- TABLE ---------- */
+.rewards-grid{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-md);
+    overflow:hidden;
+}
+.table-scroll{overflow-x:auto;}
+.reward-table{
+    width:100%;
+    min-width:900px;
+    border-collapse:collapse;
+    font-size:.88rem;
+}
+.reward-table th:nth-child(1),.reward-table td:nth-child(1){width:22%;text-align:left;}
+.reward-table th:nth-child(2),.reward-table td:nth-child(2){width:24%;}
+.reward-table th:nth-child(3),.reward-table td:nth-child(3){width:10%;}
+.reward-table th:nth-child(4),.reward-table td:nth-child(4){width:16%;}
+.reward-table th:nth-child(5),.reward-table td:nth-child(5){width:15%;}
+.reward-table th:nth-child(6),.reward-table td:nth-child(6){width:13%;}
 
-        .reward-table th,
-        .reward-table td {
-            text-align: center;
-            vertical-align: middle;
-            padding: 1rem 0.8rem;
-        }
+.reward-table th,.reward-table td{
+    vertical-align:middle;
+    padding:1.05rem .9rem;
+    text-align:center;
+}
+.reward-table th{
+    position:sticky;top:0;z-index:3;
+    background:rgba(250,252,255,.94);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    font-size:.72rem;
+    font-weight:800;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:#7b8798;
+    border-bottom:1px solid var(--line-strong);
+    padding:.95rem .9rem;
+    white-space:nowrap;
+}
+.reward-table td{border-bottom:1px solid #f2f5f9;color:var(--ink-2);}
+.reward-table tbody tr{transition:background .18s ease;}
+.reward-table tbody tr:hover{background:linear-gradient(90deg,#fffbf2,#fff);}
+.reward-table tbody tr:last-child td{border-bottom:0;}
+.reward-table tbody tr.row-expired .reward-name{color:#9aa6b6;}
+.reward-table tbody tr.row-expired .preview-gallery{opacity:.55;filter:grayscale(.35);}
 
-        .reward-table th {
-            background: #fafcff;
-            font-weight: 700;
-            color: #2c3e66;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 1.2rem 0.8rem;
-        }
+.reward-name{
+    font-weight:700;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:.9rem;
+    line-height:1.35;
+}
+.reward-name i{color:var(--gold-1);font-size:.85rem;flex:none;}
 
-        .reward-table td {
-            border-bottom: 1px solid #f0f2f6;
-            color: #1e293b;
-            word-break: break-word;
-        }
+.preview-gallery{
+    display:flex;flex-wrap:wrap;
+    justify-content:center;align-items:center;gap:8px;
+}
+.preview-img{
+    width:60px;height:60px;
+    object-fit:contain;
+    border-radius:14px;
+    background:linear-gradient(180deg,#fbfcfe,#f3f6fb);
+    border:1px solid #eef2f8;
+    padding:4px;
+    cursor:zoom-in;
+    transition:transform .2s ease, box-shadow .2s ease;
+}
+.preview-img:hover{transform:translateY(-2px) scale(1.06);box-shadow:0 8px 18px rgba(15,23,42,.12);}
+.preview-placeholder{
+    width:60px;height:60px;
+    display:inline-flex;align-items:center;justify-content:center;
+    background:var(--gold-soft);
+    border-radius:16px;
+    font-size:1.5rem;
+    color:var(--gold-1);
+}
 
-        .reward-table tr:hover {
-            background: #fef9ef;
-        }
+.type-badge{
+    display:inline-block;
+    padding:4px 12px;
+    border-radius:999px;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.01em;
+    background:var(--blue-bg);
+    color:var(--blue);
+    white-space:nowrap;
+}
+.type-badge.t-shop{background:#f4f1fe;color:#7c3aed;}
 
-        .reward-name {
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
+.link-cell a{
+    display:inline-flex;align-items:center;gap:6px;
+    color:var(--blue);
+    text-decoration:none;
+    font-size:.82rem;
+    font-weight:600;
+    padding:7px 14px;
+    border-radius:11px;
+    border:1px solid #dbe8ff;
+    background:#f7faff;
+    transition:.2s;
+    white-space:nowrap;
+}
+.link-cell a:hover{
+    background:linear-gradient(135deg,var(--gold-1),var(--gold-2));
+    border-color:transparent;
+    color:#fff;
+    box-shadow:0 6px 16px rgba(224,138,30,.28);
+}
+.link-cell .no-link{
+    display:inline-flex;align-items:center;gap:6px;
+    color:#9aa6b6;font-size:.78rem;font-weight:600;
+    padding:7px 12px;border-radius:11px;background:#f7f9fc;
+    white-space:nowrap;
+}
 
-        .preview-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-        .preview-img {
-            width: 65px;
-            height: 65px;
-            object-fit: contain;
-            border-radius: 12px;
-            background: #f8fafc;
-            padding: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease;
-        }
+.expiry{display:inline-flex;flex-direction:column;align-items:center;gap:3px;line-height:1.3;}
+.expiry .date{font-weight:600;font-size:.85rem;color:var(--ink-2);white-space:nowrap;}
+.expiry .date i{color:#b6c0ce;margin-right:5px;font-size:.78rem;}
+.expiry .left{
+    font-size:.7rem;font-weight:700;color:var(--gold-2);
+    background:var(--gold-soft);padding:2px 9px;border-radius:999px;white-space:nowrap;
+}
 
-        @media (min-width: 701px) {
-            .preview-img {
-                width: 80px;
-                height: 80px;
-            }
-        }
-        .preview-img:hover {
-            transform: scale(1.05);
-        }
-        .preview-placeholder {
-            width: 65px;
-            height: 65px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #fef3e8;
-            border-radius: 16px;
-            font-size: 1.6rem;
-            color: #f5a623;
-        }
-        @media (min-width: 701px) {
-            .preview-placeholder {
-                width: 80px;
-                height: 80px;
-                font-size: 2rem;
-            }
-        }
+.status-badge{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:6px 14px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.76rem;
+    background:#f1f5f9;
+    color:var(--ink-2);
+    white-space:nowrap;
+}
+.status-badge.available{background:var(--ok-bg);color:var(--ok);}
+.status-badge.expired{background:var(--no-bg);color:var(--no);}
 
-        .link-cell a {
-            color: #3b82f6;
-            text-decoration: none;
-            font-size: 0.8rem;
-            word-break: break-all;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .link-cell a:hover {
-            color: #f5b042;
-            text-decoration: underline;
-        }
-        .link-note {
-            font-size: 0.7rem;
-            color: #6c757d;
-            margin-bottom: 4px;
-        }
+.empty{
+    padding:3.5rem 1rem;text-align:center;color:var(--muted);
+}
+.empty i{font-size:2rem;color:#dbe4f0;display:block;margin-bottom:.7rem;}
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 5px 14px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            width: fit-content;
-            background: #f1f5f9;
-            color: #334155;
-        }
-        .status-badge.available {
-            color: #15803d;
-        }
-        .status-badge.expired {
-            color: #c0392b;
-        }
+/* ---------- FOOTER ---------- */
+footer{
+    margin-top:1.6rem;
+    text-align:center;
+    font-size:.76rem;
+    color:#8794a6;
+    line-height:1.8;
+    padding:0 1rem;
+}
+footer a{color:var(--gold-2);text-decoration:none;font-weight:600;border-bottom:1px dashed #f0c98a;}
+footer a:hover{color:#b87500;}
+footer .foot-ico{color:#cfd8e5;margin-right:6px;}
 
-        .type-badge {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: #eff6ff;
-            color: #2563eb;
-        }
+/* ---------- LIGHTBOX ---------- */
+.lightbox{
+    position:fixed;inset:0;z-index:99;
+    background:rgba(9,15,28,.82);
+    backdrop-filter:blur(6px);
+    display:none;
+    align-items:center;justify-content:center;
+    padding:2rem;
+    cursor:zoom-out;
+}
+.lightbox.show{display:flex;animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.lightbox img{
+    max-width:min(90vw,460px);max-height:80vh;
+    border-radius:20px;background:#fff;padding:18px;
+    box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+.lightbox .lb-close{
+    position:absolute;top:22px;right:26px;
+    width:42px;height:42px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.10);
+    color:#fff;font-size:1.1rem;cursor:pointer;
+}
 
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #6c757d;
-        }
-
-        @media (max-width: 700px) {
-            body { padding: 1rem; }
-            .hero h1 { font-size: 1.6rem; }
-            .reward-table th, .reward-table td { padding: 0.6rem 0.4rem; }
-            .reward-name { font-size: 0.8rem; white-space: normal; }
-            .status-badge { padding: 3px 10px; font-size: 0.7rem; }
-            .link-note { font-size: 0.6rem; }
-        }
-    </style>
+/* ---------- RESPONSIVE ---------- */
+@media (min-width:861px){
+    .preview-img{width:72px;height:72px;}
+    .preview-placeholder{width:72px;height:72px;font-size:1.75rem;}
+}
+@media (max-width:860px){
+    body{padding:1rem .75rem 2rem;}
+    .hero{padding:1.3rem 1.2rem;border-radius:22px;}
+    .hero h1{font-size:1.4rem;}
+    .crown{width:48px;height:48px;font-size:1.25rem;border-radius:15px;}
+    .table-scroll{overflow:visible;}
+    .reward-table{min-width:0;}
+    .reward-table thead{display:none;}
+    .reward-table,.reward-table tbody,.reward-table tr,.reward-table td{display:block;width:auto;}
+    .reward-table tbody tr{
+        border:1px solid var(--line);
+        border-radius:18px;
+        margin:.75rem;
+        padding:.35rem .95rem;
+        background:#fff;
+        box-shadow:var(--shadow-sm);
+    }
+    .reward-table td{
+        display:flex;align-items:center;justify-content:space-between;
+        gap:1rem;text-align:right;padding:.6rem 0;
+        border-bottom:1px dashed #eef2f8;
+    }
+    .reward-table tbody tr td:last-child{border-bottom:0;padding-bottom:.7rem;}
+    .reward-table td::before{
+        content:attr(data-label);
+        font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+        color:#98a4b4;text-align:left;flex:none;
+    }
+    .reward-table td:nth-child(1){padding-top:.9rem;}
+    .reward-table td:nth-child(2),.reward-table td:nth-child(1){justify-content:flex-start;}
+    .reward-name{text-align:left;}
+    .toolbar{padding:0;}
+    .search{max-width:none;}
+    .stats{width:100%;}
+    .stat{flex:1;justify-content:center;}
+}
+</style>
 </head>
 <body>
+
 <div class="container">
+
     <div class="hero">
-        <h1>
-            <i class="fas fa-chess-queen"></i> 皇室战争 · 免费奖励
-        </h1>
-        <div class="sub">
-            查询并领取皇室战争中的免费奖励
+        <div class="hero-left">
+            <div class="crown"><i class="fas fa-chess-queen"></i></div>
+            <div>
+                <h1 id="pageTitle">皇室战争 · 免费奖励</h1>
+                <div class="sub" id="pageSub">查询并领取皇室战争中的免费奖励</div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="lang-switch" id="langSwitch">
+                <button type="button" data-lang="zh"><i class="fas fa-language"></i> 中文</button>
+                <button type="button" data-lang="en"><i class="fas fa-globe"></i> EN</button>
+            </div>
+            <div class="stats" id="stats"></div>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <div class="search">
+            <i class="fas fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="搜索奖励名称…" autocomplete="off">
         </div>
     </div>
 
     <div class="rewards-grid">
-        <table class="reward-table">
-            <thead>
-                <tr><th>奖励</th><th>预览</th><th>类型</th><th>领取地址</th><th>截止日期</th><th>状态</th></tr>
-            </thead>
-            <tbody id="rewardTableBody"></tbody>
-        </table>
+        <div class="table-scroll">
+            <table class="reward-table">
+                <thead>
+                    <tr>
+                        <th data-th="reward"></th>
+                        <th data-th="preview"></th>
+                        <th data-th="type"></th>
+                        <th data-th="link"></th>
+                        <th data-th="expiry"></th>
+                        <th data-th="status"></th>
+                    </tr>
+                </thead>
+                <tbody id="rewardTableBody"></tbody>
+            </table>
+        </div>
+        <div class="empty" id="emptyState" style="display:none;">
+            <i class="fas fa-box-open"></i>
+            <span id="emptyText">没有找到符合条件的奖励</span>
+        </div>
     </div>
+
     <footer>
-        <i class="fas fa-tower-cell"></i> 所有奖励基于官方及创作者提供。若锁区，类型为线上商店不能领取，类型为代码可采用<a id="switchAccountLink" href="#" target="_blank" rel="noopener noreferrer">切号方法</a>领取。
+        <i class="fas fa-tower-cell foot-ico"></i>
+        <span id="footText1">所有奖励基于官方及创作者提供。</span>
+        <span id="footText2">若锁区，类型为「线上商店」的奖励无法领取；类型为「代码」的奖励可采用<a id="switchAccountLink" href="#" target="_blank" rel="noopener noreferrer">切号方法</a>领取。</span>
     </footer>
 </div>
 
+<div class="lightbox" id="lightbox"><button class="lb-close" type="button"><i class="fas fa-xmark"></i></button><img src="" alt=""></div>
+
 <script>
-    const SWITCH_ACCOUNT_URL = 'https://www.bilibili.com/video/BV1vBsczkEpm';
+const SWITCH_ACCOUNT_URL = 'https://www.bilibili.com/video/BV1vBsczkEpm';
 
-    const REWARDS_DATA = [
-        {
-            id: "reward_055",
-            name: "北极熊塔皮",
-            imgSrc: "img/tower_skin_polar_bear.png,",
-            link: "onlineshop",
-            expiryText: "2026-09-11 17:00",
-            status: "available"
-        },
-        {
-            id: "reward_054",
-            name: "进化精锐表情",
-            imgSrc: "img/emote_evo_elite_barb.png,",
-            link: "onlineshop",
-            expiryText: "未知",
-            status: "available"
-        },
-      {
-            id: "reward_053",
-            name: "英雄冰法战旗",
-            imgSrc: "img/banner_frame_hero_ice_wizard.png, img/banner_decoration_hero_ice_wizard.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=0bf05679-0b49-4197-b42f-2ce53a4c79b8",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_052",
-            name: "进化精锐战旗",
-            imgSrc: "img/banner_evo_elite_barb.png,",
-            link: "onlineshop",
-            expiryText: "2026-09-04 17:00",
-            status: "expired"
-        },
-      {
-            id: "reward_051",
-            name: "一星幸运宝箱",
-            imgSrc: "img/1_star_lucky_chest.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=1a7bd82a-d22f-437e-9874-f0bdd2fc6e2b",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_050",
-            name: "英雄女武神表情",
-            imgSrc: "img/emote_hero_valkyrie2.png,",
-            link: "onlineshop",
-            expiryText: "2026-08-28 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_049",
-            name: "赛季代币250",
-            imgSrc: "img/tokens.jpg,",
-            link: "https://link.clashroyale.com/?action=voucher&code=ca8d436a-5bc4-4ae4-afd2-786d4b753eac",
-            expiryText: "未知",
-            status: "available"
-        }, 
-        {
-            id: "reward_048",
-            name: "英雄女武神战旗",
-            imgSrc: "img/banner_hero_valkyrie.png,",
-            link: "onlineshop",
-            expiryText: "2026-08-21 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_047",
-            name: "金币50000",
-            imgSrc: "img/gold.png,",
-            link: "onlineshop",
-            expiryText: "2026-08-14 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_046",
-            name: "英雄女武神表情",
-            imgSrc: "img/emote_HERO_VALKYRIE.jpg,",
-            link: "https://store.supercell.com/zh-cn/clashroyale?storeCode=HEROVALKYRIE",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_045",
-            name: "浪人战旗套装",
-            imgSrc: "img/banner_ronin.png,",
-            link: "onlineshop",
-            expiryText: "2026-08-07 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_044",
-            name: "英雄狂战士战旗套装",
-            imgSrc: "img/banner_frame_hero_berserker.png, img/banner_decoration_hero_berserker.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=02873bc1-970b-47f4-996d-e973559464f6",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_043",
-            name: "武士塔皮",
-            imgSrc: "img/tower_skin_samurai.jpg,",
-            link: "onlineshop",
-            expiryText: "2026-07-31 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_042",
-            name: "一星幸运宝箱",
-            imgSrc: "img/1_star_lucky_chest.png,",
-            link: "https://link.clashroyale.com/cn/?action=voucher&code=7a50c498-72c6-45e9-addf-a9aad8106771",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_041",
-            name: "浪人表情",
-            imgSrc: "img/emote_ronin.jpg,",
-            link: "onlineshop",
-            expiryText: "2026-07-24 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_040",
-            name: "战旗装饰浪人",
-            imgSrc: "img/banner_decoration_ronin2.jpg,",
-            link: "https://link.clashroyale.com/?action=voucher&code=aebf2459-33eb-4023-a7ea-19d94a850495",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_039",
-            name: "战旗背景浪人",
-            imgSrc: "img/banner_frame_ronin2.jpg,",
-            link: "https://link.clashroyale.com/?action=voucher&code=166ccaa8-d085-478b-80b1-c4c9b73a9808",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_038",
-            name: "一星幸运宝箱*2",
-            imgSrc: "img/1_star_lucky_chest_2.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=aa801745-5bd7-4294-bf99-daf5c23a66f0",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_037",
-            name: "二星幸运宝箱",
-            imgSrc: "img/2_star_lucky_chest.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=42fd41a8-bca3-4260-9730-8e383682b436",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_036",
-            name: "浪人*2",
-            imgSrc: "img/ronin.png,",
-            link: "onlineshop",
-            expiryText: "2026-07-17 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_035",
-            name: "世界杯塔皮",
-            imgSrc: "img/tower_skin_wc.png,",
-            link: "onlineshop",
-            expiryText: "2026-07-10 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_034",
-            name: "世界杯野猪表情+史诗外卡30",
-            imgSrc: "img/emote_hog_wc.png,",
-            link: "onlineshop",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_033",
-            name: "浪人战旗套装",
-            imgSrc: "img/banner_frame_ronin.png, img/banner_decoration_ronin.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=819f7582-9242-444a-a6bf-9ea3efa913e3",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_032",
-            name: "哥布林红牌表情",
-            imgSrc: "img/emote_goblin_red.png,",
-            link: "onlineshop",
-            expiryText: "2026-07-03 17:00",
-            status: "expired"
-        },  
-      {
-            id: "reward_031",
-            name: "一星幸运宝箱",
-            imgSrc: "img/1_star_lucky_chest.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=af8747d0-12e1-4c54-8ce1-98f2f1a86f45",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_030",
-            name: "宝石100",
-            imgSrc: "img/gems.png,",
-            link: "onlineshop",
-            expiryText: "2026-06-26 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_029",
-            name: "赛季骨头代币250",
-            imgSrc: "img/bones.jpg,",
-            link: "https://link.clashroyale.com/?action=voucher&code=f0b10899-cec8-4094-8832-104fbd1be7d3",
-            expiryText: "未知",
-            status: "expired"
-        }, 
-       {
-            id: "reward_028",
-            name: "金币50000",
-            imgSrc: "img/gold.png,",
-            link: "onlineshop",
-            expiryText: "2026-06-19 17:00",
-            status: "expired"
-        }, 
-       {
-            id: "reward_027",
-            name: "进化公主哈欠表情",
-            imgSrc: "img/emote_evo_princess_snoring.png,",
-            link: "onlineshop",
-            expiryText: "2026-06-12 17:00",
-            status: "expired"
-        },
-        {
-            id: "reward_026",
-            name: "进化公主战旗套装",
-            imgSrc: "img/banner_frame_evo_princess.jpg, img/banner_decoration_evo_princess.jpg,",
-            link: "https://store.supercell.com/zh-cn/clashroyale?storeCode=PRINCESSEVO%21",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_025",
-            name: "战旗装饰英雄蓝胖",
-            imgSrc: "img/banner_decoration_hero_bowler.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=d978c7f0-b9b4-4c3d-a6a0-644215077f50",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_024",
-            name: "一星幸运宝箱*2",
-            imgSrc: "img/1_star_lucky_chest_2.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=edcb9757-03de-400d-9ac3-e427ef258bb8",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_023",
-            name: "战旗背景英雄蓝胖",
-            imgSrc: "img/banner_frame_hero_bowler.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=5900749e-0a86-40de-b0fb-99110d8706bd",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_022",
-            name: "一星幸运宝箱*2",
-            imgSrc: "img/1_star_lucky_chest_2.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=2bfa88f9-9c93-4b46-90d1-41eb6105589e",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_021",
-            name: "一星幸运宝箱",
-            imgSrc: "img/1_star_lucky_chest.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=f8ca36b8-b315-4b74-ae21-b89891f17502",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_020",
-            name: "进化公主表情",
-            imgSrc: "img/emote_evo_princess.jpg,",
-            link: "https://link.clashroyale.com/?action=voucher&code=38a8f183-6db1-4e41-a09b-611356d1d92c",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_019",
-            name: "战旗装饰王子",
-            imgSrc: "img/banner_decoration_prince.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=dedd6d4f-3bc2-402e-a955-54d28519312a",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_018",
-            name: "一星幸运宝箱*2",
-            imgSrc: "img/1_star_lucky_chest_2.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=4c86a715-ced5-44c9-8fec-618df05532a8",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_017",
-            name: "战旗背景王子",
-            imgSrc: "img/banner_frame_prince.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=3574b1d3-68e7-4382-a5b3-76da1a40d712",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_016",
-            name: "一星幸运宝箱*2",
-            imgSrc: "img/1_star_lucky_chest_2.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=dedd6d4f-3bc2-402e-a955-54d28519312a",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_015",
-            name: "英雄黑王战旗套装",
-            imgSrc: "img/banner_frame_darkprince.png, img/banner_decoration_darkprince.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=856a823c-c920-42f5-993a-c68d75ab02c7",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_014",
-            name: "战旗装饰投弹兵",
-            imgSrc: "img/banner_decoration_bomber.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=6efcf782-8e6c-44ee-995b-c0e2dbf585d6",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_013",
-            name: "战旗背景投弹兵",
-            imgSrc: "img/banner_frame_bomber.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=c702a766-0ad8-41dd-a6a0-908a61f3a0d4",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_012",
-            name: "二星幸运宝箱",
-            imgSrc: "img/2_star_lucky_chest.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=c99c94c7-89f6-4820-95b0-7f517cef8e3f",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_011",
-            name: "一星幸运宝箱",
-            imgSrc: "img/1_star_lucky_chest.png",
-            link: "https://link.clashroyale.com/?action=voucher&code=f485a69e-39ee-4960-a276-5b3d7152a620",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_010",
-            name: "战旗装饰神龙",
-            imgSrc: "img/banner_decoration_dragon.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=ce494ac0-2c9b-4a2f-8182-e99ebad369cf",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_009",
-            name: "战旗背景神龙",
-            imgSrc: "img/banner_frame_dragon.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=07c4911e-da46-434b-935a-f82c1da715ef",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_008",
-            name: "二星幸运宝箱",
-            imgSrc: "img/2_star_lucky_chest.png,",
-            link: "https://link.clashroyale.com/? action=voucher&code=e4a38491-9d8a-478e-9680-387ff18f52b2",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_007",
-            name: "一星幸运宝箱*2",
-            imgSrc: "img/1_star_lucky_chest_2.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=b31e39ff-dc2a-40fc-9b56-fb8928528a76",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_006",
-            name: "盾卫表情",
-            imgSrc: "img/emote_guards.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=6884f0e3-367c-4449-93ef-fb4e17ac55a1",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_005",
-            name: "十周年战旗套装",
-            imgSrc: "img/10th_banner_frame.png, img/10th_banner_decoration.png,",
-            link: "https://link.clashroyale.com/?action=voucher&code=f9a8c8fa-8844-4e3d-99df-8c01de1d8862",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_004",
-            name: "十周年野猪表情",
-            imgSrc: "img/10th_emote_hog_rider.png",
-            link: "https://link.clashroyale.com/?action=voucher&code=4e2bceb9-d231-4d54-a331-5b8d08005c86",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_003",
-            name: "进化苍蝇海表情",
-            imgSrc: "img/emote_evo_minion_horde.png",
-            link: "https://store.supercell.com/zh-cn/clashroyale?storeCode=MINIONHORDE%21",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_002",
-            name: "三星幸运宝箱+普通外卡200+金币50000",
-            imgSrc: "img/3_star_lucky_chest.png, img/normal_wild_card.png, img/gold.png",
-            link: "https://link.clashroyale.com/?action=voucher&code=0993f400-a602-41c7-a9b6-5c701777f7d7",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_001",
-            name: "一星幸运宝箱",
-            imgSrc: "img/1_star_lucky_chest.png",
-            link: "https://link.clashroyale.com/?action=voucher&code=9f310d9a-0e1d-4e9c-b6d9-71c09a8e9fb0",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_001",
-            name: "哥布林事件表情",
-            imgSrc: "img/emote_goblin_affair.png",
-            link: "https://store.supercell.com/zh-cn/clashroyale?storeCode=ROYALEAFFAIR",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_001",
-            name: "哥布林笑表情",
-            imgSrc: "img/emote_goblin_smile.png",
-            link: "onlineshop",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_001",
-            name: "三枪战旗套装",
-            imgSrc: "img/banner_frame_3M.jpg, img/banner_decoration_3M.jpg",
-            link: "https://link.clashroyale.com/?action=voucher&code=94158c89-9f24-4d8c-8694-76eb087caef2",
-            expiryText: "未知",
-            status: "available"
-        },
-        {
-            id: "reward_001",
-            name: "英雄火枪表情",
-            imgSrc: "img/emote_hero_musketeer.png",
-            link: "https://store.supercell.com/zh-cn/clashroyale?storeCode=TRUSTYTURRET",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_001",
-            name: "进化皇猪表情",
-            imgSrc: "img/emote_hogs_fly.png",
-            link: "https://store.supercell.com/zh-cn/clashroyale?storeCode=WHENHOGSFLY%21",
-            expiryText: "未知",
-            status: "expired"
-        },
-        {
-            id: "reward_001",
-            name: "幽灵表情",
-            imgSrc: "img/emote_ghost_boo.jpg",
-            link: "https://link.clashroyale.com/?action=voucher&code=bf578c2b-bc44-4312-8c61-5e513b6fb817",
-            expiryText: "未知",
-            status: "available"
+/* ================= I18N ================= */
+const I18N = {
+    zh: {
+        docTitle: '皇室战争 · 免费奖励',
+        title: '皇室战争 · 免费奖励',
+        sub: '查询并领取皇室战争中的免费奖励',
+        search: '搜索奖励名称…',
+        th_reward: '奖励', th_preview: '预览', th_type: '类型',
+        th_link: '领取地址', th_expiry: '截止日期', th_status: '状态',
+        type_link: '链接', type_code: '代码', type_shop: '线上商店',
+        status_available: '可领取', status_expired: '已过期',
+        unknown: '未知', claim: '前往兑换', shopOnly: '游戏内商店',
+        stat_all: '全部', stat_available: '可领取', stat_expired: '已过期',
+        daysLeft: n => `剩余 ${n} 天`, hoursLeft: n => `剩余 ${n} 小时`,
+        empty: '没有找到符合条件的奖励',
+        foot1: '所有奖励基于官方及创作者提供。',
+        foot2a: '若锁区，类型为「线上商店」的奖励无法领取；类型为「代码」的奖励可采用',
+        foot2b: '切号方法',
+        foot2c: '领取。'
+    },
+    en: {
+        docTitle: 'Clash Royale · Free Rewards',
+        title: 'Clash Royale · Free Rewards',
+        sub: 'Track and claim every free reward in Clash Royale',
+        search: 'Search rewards…',
+        th_reward: 'Reward', th_preview: 'Preview', th_type: 'Type',
+        th_link: 'Claim', th_expiry: 'Expires', th_status: 'Status',
+        type_link: 'Link', type_code: 'Code', type_shop: 'Online Shop',
+        status_available: 'Available', status_expired: 'Expired',
+        unknown: 'Unknown', claim: 'Claim now', shopOnly: 'In-game shop',
+        stat_all: 'All', stat_available: 'Available', stat_expired: 'Expired',
+        daysLeft: n => `${n}d left`, hoursLeft: n => `${n}h left`,
+        empty: 'No rewards match your filters',
+        foot1: 'All rewards are provided by official channels and creators.',
+        foot2a: 'If your region is locked, "Online Shop" rewards cannot be claimed, while "Code" rewards can be claimed via the ',
+        foot2b: 'account-switch method',
+        foot2c: '.'
+    }
+};
+
+let LANG = 'zh';
+let FILTER = 'all';
+let KEYWORD = '';
+
+/* ================= DATA ================= */
+const REWARDS_DATA = [
+    {id:"reward_055",name:"北极熊塔皮",en:"Polar Bear Tower Skin",imgSrc:"img/tower_skin_polar_bear.png",link:"onlineshop",expiryText:"2026-09-11 17:00",status:"available"},
+    {id:"reward_054",name:"进化精锐表情",en:"Evolved Elite Barbarians Emote",imgSrc:"img/emote_evo_elite_barb.png",link:"onlineshop",expiryText:"2026-10-01 17:00",status:"available"},
+    {id:"reward_053",name:"英雄冰法战旗",en:"Hero Ice Wizard Banner",imgSrc:"img/banner_frame_hero_ice_wizard.png, img/banner_decoration_hero_ice_wizard.png",link:"https://link.clashroyale.com/?action=voucher&code=0bf05679-0b49-4197-b42f-2ce53a4c79b8",expiryText:"未知",status:"available"},
+    {id:"reward_052",name:"进化精锐战旗",en:"Evolved Elite Barbarians Banner",imgSrc:"img/banner_evo_elite_barb.png",link:"onlineshop",expiryText:"2026-09-04 17:00",status:"expired"},
+    {id:"reward_051",name:"一星幸运宝箱",en:"1-Star Lucky Chest",imgSrc:"img/1_star_lucky_chest.png",link:"https://link.clashroyale.com/?action=voucher&code=1a7bd82a-d22f-437e-9874-f0bdd2fc6e2b",expiryText:"未知",status:"available"},
+    {id:"reward_050",name:"英雄女武神表情",en:"Hero Valkyrie Emote",imgSrc:"img/emote_hero_valkyrie2.png",link:"onlineshop",expiryText:"2026-08-28 17:00",status:"expired"},
+    {id:"reward_049",name:"赛季代币250",en:"250 Season Tokens",imgSrc:"img/tokens.jpg",link:"https://link.clashroyale.com/?action=voucher&code=ca8d436a-5bc4-4ae4-afd2-786d4b753eac",expiryText:"未知",status:"expired"},
+    {id:"reward_048",name:"英雄女武神战旗",en:"Hero Valkyrie Banner",imgSrc:"img/banner_hero_valkyrie.png",link:"onlineshop",expiryText:"2026-08-21 17:00",status:"expired"},
+    {id:"reward_047",name:"金币50000",en:"50,000 Gold",imgSrc:"img/gold.png",link:"onlineshop",expiryText:"2026-08-14 17:00",status:"expired"},
+    {id:"reward_046",name:"英雄女武神表情",en:"Hero Valkyrie Emote",imgSrc:"img/emote_HERO_VALKYRIE.jpg",link:"https://store.supercell.com/zh-cn/clashroyale?storeCode=HEROVALKYRIE",expiryText:"未知",status:"available"},
+    {id:"reward_045",name:"浪人战旗套装",en:"Ronin Banner Set",imgSrc:"img/banner_ronin.png",link:"onlineshop",expiryText:"2026-08-07 17:00",status:"expired"},
+    {id:"reward_044",name:"英雄狂战士战旗套装",en:"Hero Berserker Banner Set",imgSrc:"img/banner_frame_hero_berserker.png, img/banner_decoration_hero_berserker.png",link:"https://link.clashroyale.com/?action=voucher&code=02873bc1-970b-47f4-996d-e973559464f6",expiryText:"未知",status:"available"},
+    {id:"reward_043",name:"武士塔皮",en:"Samurai Tower Skin",imgSrc:"img/tower_skin_samurai.jpg",link:"onlineshop",expiryText:"2026-07-31 17:00",status:"expired"},
+    {id:"reward_042",name:"一星幸运宝箱",en:"1-Star Lucky Chest",imgSrc:"img/1_star_lucky_chest.png",link:"https://link.clashroyale.com/cn/?action=voucher&code=7a50c498-72c6-45e9-addf-a9aad8106771",expiryText:"未知",status:"expired"},
+    {id:"reward_041",name:"浪人表情",en:"Ronin Emote",imgSrc:"img/emote_ronin.jpg",link:"onlineshop",expiryText:"2026-07-24 17:00",status:"expired"},
+    {id:"reward_040",name:"战旗装饰浪人",en:"Ronin Banner Decoration",imgSrc:"img/banner_decoration_ronin2.jpg",link:"https://link.clashroyale.com/?action=voucher&code=aebf2459-33eb-4023-a7ea-19d94a850495",expiryText:"未知",status:"expired"},
+    {id:"reward_039",name:"战旗背景浪人",en:"Ronin Banner Frame",imgSrc:"img/banner_frame_ronin2.jpg",link:"https://link.clashroyale.com/?action=voucher&code=166ccaa8-d085-478b-80b1-c4c9b73a9808",expiryText:"未知",status:"expired"},
+    {id:"reward_038",name:"一星幸运宝箱*2",en:"1-Star Lucky Chest x2",imgSrc:"img/1_star_lucky_chest_2.png",link:"https://link.clashroyale.com/?action=voucher&code=aa801745-5bd7-4294-bf99-daf5c23a66f0",expiryText:"未知",status:"expired"},
+    {id:"reward_037",name:"二星幸运宝箱",en:"2-Star Lucky Chest",imgSrc:"img/2_star_lucky_chest.png",link:"https://link.clashroyale.com/?action=voucher&code=42fd41a8-bca3-4260-9730-8e383682b436",expiryText:"未知",status:"expired"},
+    {id:"reward_036",name:"浪人*2",en:"Ronin x2",imgSrc:"img/ronin.png",link:"onlineshop",expiryText:"2026-07-17 17:00",status:"expired"},
+    {id:"reward_035",name:"世界杯塔皮",en:"World Cup Tower Skin",imgSrc:"img/tower_skin_wc.png",link:"onlineshop",expiryText:"2026-07-10 17:00",status:"expired"},
+    {id:"reward_034",name:"世界杯野猪表情+史诗外卡30",en:"WC Hog Rider Emote + 30 Epic Wild Cards",imgSrc:"img/emote_hog_wc.png",link:"onlineshop",expiryText:"未知",status:"available"},
+    {id:"reward_033",name:"浪人战旗套装",en:"Ronin Banner Set",imgSrc:"img/banner_frame_ronin.png, img/banner_decoration_ronin.png",link:"https://link.clashroyale.com/?action=voucher&code=819f7582-9242-444a-a6bf-9ea3efa913e3",expiryText:"未知",status:"available"},
+    {id:"reward_032",name:"哥布林红牌表情",en:"Goblin Red Card Emote",imgSrc:"img/emote_goblin_red.png",link:"onlineshop",expiryText:"2026-07-03 17:00",status:"expired"},
+    {id:"reward_031",name:"一星幸运宝箱",en:"1-Star Lucky Chest",imgSrc:"img/1_star_lucky_chest.png",link:"https://link.clashroyale.com/?action=voucher&code=af8747d0-12e1-4c54-8ce1-98f2f1a86f45",expiryText:"未知",status:"expired"},
+    {id:"reward_030",name:"宝石100",en:"100 Gems",imgSrc:"img/gems.png",link:"onlineshop",expiryText:"2026-06-26 17:00",status:"expired"},
+    {id:"reward_029",name:"赛季骨头代币250",en:"250 Season Bones Tokens",imgSrc:"img/bones.jpg",link:"https://link.clashroyale.com/?action=voucher&code=f0b10899-cec8-4094-8832-104fbd1be7d3",expiryText:"未知",status:"expired"},
+    {id:"reward_028",name:"金币50000",en:"50,000 Gold",imgSrc:"img/gold.png",link:"onlineshop",expiryText:"2026-06-19 17:00",status:"expired"},
+    {id:"reward_027",name:"进化公主哈欠表情",en:"Evolved Princess Yawn Emote",imgSrc:"img/emote_evo_princess_snoring.png",link:"onlineshop",expiryText:"2026-06-12 17:00",status:"expired"},
+    {id:"reward_026",name:"进化公主战旗套装",en:"Evolved Princess Banner Set",imgSrc:"img/banner_frame_evo_princess.jpg, img/banner_decoration_evo_princess.jpg",link:"https://store.supercell.com/zh-cn/clashroyale?storeCode=PRINCESSEVO%21",expiryText:"未知",status:"available"},
+    {id:"reward_025",name:"战旗装饰英雄蓝胖",en:"Hero Bowler Banner Decoration",imgSrc:"img/banner_decoration_hero_bowler.png",link:"https://link.clashroyale.com/?action=voucher&code=d978c7f0-b9b4-4c3d-a6a0-644215077f50",expiryText:"未知",status:"expired"},
+    {id:"reward_024",name:"一星幸运宝箱*2",en:"1-Star Lucky Chest x2",imgSrc:"img/1_star_lucky_chest_2.png",link:"https://link.clashroyale.com/?action=voucher&code=edcb9757-03de-400d-9ac3-e427ef258bb8",expiryText:"未知",status:"expired"},
+    {id:"reward_023",name:"战旗背景英雄蓝胖",en:"Hero Bowler Banner Frame",imgSrc:"img/banner_frame_hero_bowler.png",link:"https://link.clashroyale.com/?action=voucher&code=5900749e-0a86-40de-b0fb-99110d8706bd",expiryText:"未知",status:"expired"},
+    {id:"reward_022",name:"一星幸运宝箱*2",en:"1-Star Lucky Chest x2",imgSrc:"img/1_star_lucky_chest_2.png",link:"https://link.clashroyale.com/?action=voucher&code=2bfa88f9-9c93-4b46-90d1-41eb6105589e",expiryText:"未知",status:"expired"},
+    {id:"reward_021",name:"一星幸运宝箱",en:"1-Star Lucky Chest",imgSrc:"img/1_star_lucky_chest.png",link:"https://link.clashroyale.com/?action=voucher&code=f8ca36b8-b315-4b74-ae21-b89891f17502",expiryText:"未知",status:"expired"},
+    {id:"reward_020",name:"进化公主表情",en:"Evolved Princess Emote",imgSrc:"img/emote_evo_princess.jpg",link:"https://link.clashroyale.com/?action=voucher&code=38a8f183-6db1-4e41-a09b-611356d1d92c",expiryText:"未知",status:"expired"},
+    {id:"reward_019",name:"战旗装饰王子",en:"Prince Banner Decoration",imgSrc:"img/banner_decoration_prince.png",link:"https://link.clashroyale.com/?action=voucher&code=dedd6d4f-3bc2-402e-a955-54d28519312a",expiryText:"未知",status:"expired"},
+    {id:"reward_018",name:"一星幸运宝箱*2",en:"1-Star Lucky Chest x2",imgSrc:"img/1_star_lucky_chest_2.png",link:"https://link.clashroyale.com/?action=voucher&code=4c86a715-ced5-44c9-8fec-618df05532a8",expiryText:"未知",status:"expired"},
+    {id:"reward_017",name:"战旗背景王子",en:"Prince Banner Frame",imgSrc:"img/banner_frame_prince.png",link:"https://link.clashroyale.com/?action=voucher&code=3574b1d3-68e7-4382-a5b3-76da1a40d712",expiryText:"未知",status:"expired"},
+    {id:"reward_016",name:"一星幸运宝箱*2",en:"1-Star Lucky Chest x2",imgSrc:"img/1_star_lucky_chest_2.png",link:"https://link.clashroyale.com/?action=voucher&code=dedd6d4f-3bc2-402e-a955-54d28519312a",expiryText:"未知",status:"expired"},
+    {id:"reward_015",name:"英雄黑王战旗套装",en:"Hero Dark Prince Banner Set",imgSrc:"img/banner_frame_darkprince.png, img/banner_decoration_darkprince.png",link:"https://link.clashroyale.com/?action=voucher&code=856a823c-c920-42f5-993a-c68d75ab02c7",expiryText:"未知",status:"available"},
+    {id:"reward_014",name:"战旗装饰投弹兵",en:"Bomber Banner Decoration",imgSrc:"img/banner_decoration_bomber.png",link:"https://link.clashroyale.com/?action=voucher&code=6efcf782-8e6c-44ee-995b-c0e2dbf585d6",expiryText:"未知",status:"expired"},
+    {id:"reward_013",name:"战旗背景投弹兵",en:"Bomber Banner Frame",imgSrc:"img/banner_frame_bomber.png",link:"https://link.clashroyale.com/?action=voucher&code=c702a766-0ad8-41dd-a6a0-908a61f3a0d4",expiryText:"未知",status:"expired"},
+    {id:"reward_012",name:"二星幸运宝箱",en:"2-Star Lucky Chest",imgSrc:"img/2_star_lucky_chest.png",link:"https://link.clashroyale.com/?action=voucher&code=c99c94c7-89f6-4820-95b0-7f517cef8e3f",expiryText:"未知",status:"expired"},
+    {id:"reward_011",name:"一星幸运宝箱",en:"1-Star Lucky Chest",imgSrc:"img/1_star_lucky_chest.png",link:"https://link.clashroyale.com/?action=voucher&code=f485a69e-39ee-4960-a276-5b3d7152a620",expiryText:"未知",status:"expired"},
+    {id:"reward_010",name:"战旗装饰神龙",en:"Dragon Banner Decoration",imgSrc:"img/banner_decoration_dragon.png",link:"https://link.clashroyale.com/?action=voucher&code=ce494ac0-2c9b-4a2f-8182-e99ebad369cf",expiryText:"未知",status:"expired"},
+    {id:"reward_009",name:"战旗背景神龙",en:"Dragon Banner Frame",imgSrc:"img/banner_frame_dragon.png",link:"https://link.clashroyale.com/?action=voucher&code=07c4911e-da46-434b-935a-f82c1da715ef",expiryText:"未知",status:"expired"},
+    {id:"reward_008",name:"二星幸运宝箱",en:"2-Star Lucky Chest",imgSrc:"img/2_star_lucky_chest.png",link:"https://link.clashroyale.com/?action=voucher&code=e4a38491-9d8a-478e-9680-387ff18f52b2",expiryText:"未知",status:"expired"},
+    {id:"reward_007",name:"一星幸运宝箱*2",en:"1-Star Lucky Chest x2",imgSrc:"img/1_star_lucky_chest_2.png",link:"https://link.clashroyale.com/?action=voucher&code=b31e39ff-dc2a-40fc-9b56-fb8928528a76",expiryText:"未知",status:"expired"},
+    {id:"reward_006",name:"盾卫表情",en:"Guards Emote",imgSrc:"img/emote_guards.png",link:"https://link.clashroyale.com/?action=voucher&code=6884f0e3-367c-4449-93ef-fb4e17ac55a1",expiryText:"未知",status:"available"},
+    {id:"reward_005",name:"十周年战旗套装",en:"10th Anniversary Banner Set",imgSrc:"img/10th_banner_frame.png, img/10th_banner_decoration.png",link:"https://link.clashroyale.com/?action=voucher&code=f9a8c8fa-8844-4e3d-99df-8c01de1d8862",expiryText:"未知",status:"available"},
+    {id:"reward_004",name:"十周年野猪表情",en:"10th Anniversary Hog Rider Emote",imgSrc:"img/10th_emote_hog_rider.png",link:"https://link.clashroyale.com/?action=voucher&code=4e2bceb9-d231-4d54-a331-5b8d08005c86",expiryText:"未知",status:"available"},
+    {id:"reward_003",name:"进化苍蝇海表情",en:"Evolved Minion Horde Emote",imgSrc:"img/emote_evo_minion_horde.png",link:"https://store.supercell.com/zh-cn/clashroyale?storeCode=MINIONHORDE%21",expiryText:"未知",status:"expired"},
+    {id:"reward_002",name:"三星幸运宝箱+普通外卡200+金币50000",en:"3-Star Lucky Chest + 200 Common Wild Cards + 50,000 Gold",imgSrc:"img/3_star_lucky_chest.png, img/normal_wild_card.png, img/gold.png",link:"https://link.clashroyale.com/?action=voucher&code=0993f400-a602-41c7-a9b6-5c701777f7d7",expiryText:"未知",status:"expired"},
+    {id:"reward_001a",name:"一星幸运宝箱",en:"1-Star Lucky Chest",imgSrc:"img/1_star_lucky_chest.png",link:"https://link.clashroyale.com/?action=voucher&code=9f310d9a-0e1d-4e9c-b6d9-71c09a8e9fb0",expiryText:"未知",status:"expired"},
+    {id:"reward_001b",name:"哥布林事件表情",en:"Goblin Affair Emote",imgSrc:"img/emote_goblin_affair.png",link:"https://store.supercell.com/zh-cn/clashroyale?storeCode=ROYALEAFFAIR",expiryText:"未知",status:"expired"},
+    {id:"reward_001c",name:"哥布林笑表情",en:"Goblin Smile Emote",imgSrc:"img/emote_goblin_smile.png",link:"onlineshop",expiryText:"未知",status:"expired"},
+    {id:"reward_001d",name:"三枪战旗套装",en:"Three Musketeers Banner Set",imgSrc:"img/banner_frame_3M.jpg, img/banner_decoration_3M.jpg",link:"https://link.clashroyale.com/?action=voucher&code=94158c89-9f24-4d8c-8694-76eb087caef2",expiryText:"未知",status:"available"},
+    {id:"reward_001e",name:"英雄火枪表情",en:"Hero Musketeer Emote",imgSrc:"img/emote_hero_musketeer.png",link:"https://store.supercell.com/zh-cn/clashroyale?storeCode=TRUSTYTURRET",expiryText:"未知",status:"expired"},
+    {id:"reward_001f",name:"进化皇猪表情",en:"Evolved Royal Hogs Emote",imgSrc:"img/emote_hogs_fly.png",link:"https://store.supercell.com/zh-cn/clashroyale?storeCode=WHENHOGSFLY%21",expiryText:"未知",status:"expired"},
+    {id:"reward_001g",name:"幽灵表情",en:"Ghost Boo Emote",imgSrc:"img/emote_ghost_boo.jpg",link:"https://link.clashroyale.com/?action=voucher&code=bf578c2b-bc44-4312-8c61-5e513b6fb817",expiryText:"未知",status:"available"}
+];
+
+/* ================= HELPERS ================= */
+const t = k => I18N[LANG][k];
+const nameOf = r => (LANG === 'en' ? (r.en || r.name) : r.name);
+
+function getRewardType(link){
+    if(!link) return '';
+    if(link.includes('action=voucher')) return t('type_link');
+    if(link.includes('storeCode'))      return t('type_code');
+    if(link.includes('onlineshop'))     return t('type_shop');
+    return '';
+}
+function getTypeClass(link){
+    if(link && link.includes('onlineshop')) return ' t-shop';
+    return '';
+}
+function getStatusInfo(status){
+    return status === 'available'
+        ? {text:t('status_available'), icon:'fa-circle-check', cls:'available'}
+        : {text:t('status_expired'),   icon:'fa-calendar-xmark', cls:'expired'};
+}
+function parseImageList(field){
+    if(!field) return [];
+    return String(field).split(',').map(s => s.trim()).filter(Boolean);
+}
+function remainingLabel(expiryText, status){
+    if(status !== 'available') return '';
+    if(LANG === 'en' && expiryText === '未知') return '';
+    const m = /^(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})$/.exec(expiryText || '');
+    if(!m) return '';
+    const diff = new Date(+m[1], +m[2]-1, +m[3], +m[4], +m[5]) - new Date();
+    if(!(diff > 0)) return '';
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    return days > 0 ? t('daysLeft')(days) : t('hoursLeft')(hours);
+}
+function formatExpiry(text){
+    if(!text) return '';
+    if(text === '未知') return t('unknown');
+    if(LANG === 'en'){
+        return text.replace(/^(\d{4})-(\d{2})-(\d{2})/, '$2/$3/$1');
+    }
+    return text;
+}
+
+/* ================= RENDER ================= */
+function createImageElement(src, alt){
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = alt;
+    img.className = 'preview-img';
+    img.loading = 'lazy';
+    img.addEventListener('click', () => openLightbox(src, alt));
+    img.onerror = function(){
+        if(img.parentNode && !img.parentNode.querySelector('.preview-placeholder')){
+            const ph = document.createElement('div');
+            ph.className = 'preview-placeholder';
+            ph.innerHTML = '<i class="fas fa-chess-board"></i>';
+            img.style.display = 'none';
+            img.parentNode.appendChild(ph);
         }
+        img.onerror = null;
+    };
+    return img;
+}
+
+function renderStats(){
+    const box = document.getElementById('stats');
+    const all = REWARDS_DATA.length;
+    const av  = REWARDS_DATA.filter(r => r.status === 'available').length;
+    const defs = [
+        {key:'all',       n:all,        label:t('stat_all'),       icon:'fa-layer-group'},
+        {key:'available', n:av,         label:t('stat_available'), icon:'fa-circle-check'},
+        {key:'expired',   n:all - av,   label:t('stat_expired'),   icon:'fa-calendar-xmark'}
     ];
-
-    function getRewardType(link) {
-        if (!link) return '—';
-        if (link.includes('action=voucher')) return '链接';
-        if (link.includes('storeCode')) return '代码';
-        if (link.includes('onlineshop')) return '线上商店';
-        return '—';
-    }
-
-    function getLinkNote(link) {
-        if (!link) return '';
-        if (link.includes('action=voucher')) return '类型：链接';
-        if (link.includes('storeCode')) return '类型：代码';
-        if (link.includes('onlineshop')) return '类型：线上商店';
-        return '';
-    }
-
-    function getStatusInfo(status) {
-        if (status === "available") {
-            return { text: "可领取", icon: "fa-circle-check", class: "available" };
-        } else {
-            return { text: "已过期", icon: "fa-calendar-times", class: "expired" };
-        }
-    }
-
-    function parseImageList(imgSrcField) {
-        if (!imgSrcField) return [];
-        if (typeof imgSrcField === 'string' && imgSrcField.includes(',')) {
-            return imgSrcField.split(',').map(s => s.trim()).filter(s => s);
-        }
-        return [imgSrcField];
-    }
-
-    function createImageElement(src, alt) {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = alt;
-        img.className = 'preview-img';
-        img.onerror = function() {
-            if (img.parentNode && !img.parentNode.querySelector('.preview-placeholder')) {
-                const placeholder = document.createElement('div');
-                placeholder.className = 'preview-placeholder';
-                placeholder.innerHTML = '<i class="fas fa-chess-board"></i>';
-                img.style.display = 'none';
-                img.parentNode.appendChild(placeholder);
-            }
-            img.onerror = null;
-        };
-        return img;
-    }
-
-    function renderTable() {
-        const tbody = document.getElementById("rewardTableBody");
-        if (!tbody) return;
-        tbody.innerHTML = "";
-
-        REWARDS_DATA.forEach(reward => {
-            const statusInfo = getStatusInfo(reward.status);
-            const tr = document.createElement("tr");
-
-            const tdName = document.createElement("td");
-            tdName.innerHTML = `<div class="reward-name"><i class="fas fa-chest" style="color:#e09d32;"></i>${reward.name}</div>`;
-
-            const tdPreview = document.createElement("td");
-            const gallery = document.createElement("div");
-            gallery.className = "preview-gallery";
-            
-            const imagePaths = parseImageList(reward.imgSrc);
-            if (imagePaths.length === 0) {
-                const placeholder = document.createElement('div');
-                placeholder.className = 'preview-placeholder';
-                placeholder.innerHTML = '<i class="fas fa-image"></i>';
-                gallery.appendChild(placeholder);
-            } else {
-                imagePaths.forEach(src => {
-                    const img = createImageElement(src, reward.name);
-                    gallery.appendChild(img);
-                });
-            }
-            tdPreview.appendChild(gallery);
-
-            const tdType = document.createElement("td");
-            const rewardType = getRewardType(reward.link);
-            tdType.innerHTML = `<span class="type-badge">${rewardType}</span>`;
-
-            const tdLink = document.createElement("td");
-            tdLink.className = "link-cell";
-            if (reward.link && reward.link !== 'onlineshop') {
-                tdLink.innerHTML = `<a href="${reward.link}" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> 前往兑换</a>`;
-            } else {
-                tdLink.innerHTML = `<span style="color:#94a3b8;">—</span>`;
-            }
-
-            const tdExpiry = document.createElement("td");
-            tdExpiry.innerHTML = `<span><i class="far fa-calendar-alt"></i> ${reward.expiryText}</span>`;
-
-            const tdStatus = document.createElement("td");
-            tdStatus.innerHTML = `<div class="status-badge ${statusInfo.class}"><i class="fas ${statusInfo.icon}"></i> ${statusInfo.text}</div>`;
-
-            tr.appendChild(tdName);
-            tr.appendChild(tdPreview);
-            tr.appendChild(tdType);
-            tr.appendChild(tdLink);
-            tr.appendChild(tdExpiry);
-            tr.appendChild(tdStatus);
-            tbody.appendChild(tr);
-        });
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        renderTable();
-        const switchLink = document.getElementById("switchAccountLink");
-        if (switchLink && SWITCH_ACCOUNT_URL && SWITCH_ACCOUNT_URL !== '#') {
-            switchLink.href = SWITCH_ACCOUNT_URL;
-        }
+    box.innerHTML = defs.map(d => `
+        <div class="stat${FILTER === d.key ? ' active' : ''}" data-filter="${d.key}">
+            <i class="fas ${d.icon}"></i>${d.label}<span class="n">${d.n}</span>
+        </div>`).join('');
+    box.querySelectorAll('.stat').forEach(el => {
+        el.addEventListener('click', () => { FILTER = el.dataset.filter; renderStats(); renderTable(); });
     });
+}
+
+function renderTable(){
+    const tbody = document.getElementById('rewardTableBody');
+    const empty = document.getElementById('emptyState');
+    tbody.innerHTML = '';
+
+    const kw = KEYWORD.trim().toLowerCase();
+    const list = REWARDS_DATA.filter(r => {
+        if(FILTER !== 'all' && r.status !== FILTER) return false;
+        if(!kw) return true;
+        return (r.name + ' ' + (r.en || '')).toLowerCase().includes(kw);
+    });
+
+    list.forEach(reward => {
+        const st = getStatusInfo(reward.status);
+        const tr = document.createElement('tr');
+        if(reward.status === 'expired') tr.className = 'row-expired';
+
+        const tdName = document.createElement('td');
+        tdName.dataset.label = t('th_reward');
+        tdName.innerHTML = `<div class="reward-name"><i class="fas fa-chest"></i><span>${nameOf(reward)}</span></div>`;
+
+        const tdPreview = document.createElement('td');
+        tdPreview.dataset.label = t('th_preview');
+        const gallery = document.createElement('div');
+        gallery.className = 'preview-gallery';
+        const paths = parseImageList(reward.imgSrc);
+        if(paths.length === 0){
+            gallery.innerHTML = '<div class="preview-placeholder"><i class="fas fa-image"></i></div>';
+        }else{
+            paths.forEach(src => gallery.appendChild(createImageElement(src, nameOf(reward))));
+        }
+        tdPreview.appendChild(gallery);
+
+        const tdType = document.createElement('td');
+        tdType.dataset.label = t('th_type');
+        tdType.innerHTML = `<span class="type-badge${getTypeClass(reward.link)}">${getRewardType(reward.link) || '—'}</span>`;
+
+        const tdLink = document.createElement('td');
+        tdLink.className = 'link-cell';
+        tdLink.dataset.label = t('th_link');
+        if(reward.link && reward.link !== 'onlineshop'){
+            tdLink.innerHTML = `<a href="${reward.link}" target="_blank" rel="noopener noreferrer"><i class="fas fa-arrow-up-right-from-square"></i> ${t('claim')}</a>`;
+        }else{
+            tdLink.innerHTML = `<span class="no-link"><i class="fas fa-store"></i> ${t('shopOnly')}</span>`;
+        }
+
+        const tdExpiry = document.createElement('td');
+        tdExpiry.dataset.label = t('th_expiry');
+        const left = remainingLabel(reward.expiryText, reward.status);
+        tdExpiry.innerHTML = `<div class="expiry">
+            <span class="date"><i class="far fa-calendar"></i>${formatExpiry(reward.expiryText)}</span>
+            ${left ? `<span class="left">${left}</span>` : ''}
+        </div>`;
+
+        const tdStatus = document.createElement('td');
+        tdStatus.dataset.label = t('th_status');
+        tdStatus.innerHTML = `<div class="status-badge ${st.cls}"><i class="fas ${st.icon}"></i> ${st.text}</div>`;
+
+        [tdName, tdPreview, tdType, tdLink, tdExpiry, tdStatus].forEach(td => tr.appendChild(td));
+        tbody.appendChild(tr);
+    });
+
+    empty.style.display = list.length ? 'none' : 'block';
+    document.getElementById('emptyText').textContent = t('empty');
+}
+
+function renderStatic(){
+    document.documentElement.lang = LANG === 'en' ? 'en' : 'zh-CN';
+    document.title = t('docTitle');
+    document.getElementById('pageTitle').textContent = t('title');
+    document.getElementById('pageSub').textContent = t('sub');
+    document.getElementById('searchInput').placeholder = t('search');
+
+    document.querySelectorAll('.reward-table th').forEach(th => {
+        th.textContent = t('th_' + th.dataset.th);
+    });
+
+    document.getElementById('footText1').textContent = t('foot1');
+    const foot2 = document.getElementById('footText2');
+    foot2.innerHTML = t('foot2a') +
+        `<a id="switchAccountLink" href="#" target="_blank" rel="noopener noreferrer">${t('foot2b')}</a>` +
+        t('foot2c');
+    const switchLink = document.getElementById('switchAccountLink');
+    if(switchLink && SWITCH_ACCOUNT_URL && SWITCH_ACCOUNT_URL !== '#') switchLink.href = SWITCH_ACCOUNT_URL;
+
+    document.querySelectorAll('#langSwitch button').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === LANG);
+    });
+}
+
+function renderAll(){ renderStatic(); renderStats(); renderTable(); }
+
+/* ================= LIGHTBOX ================= */
+const lightbox = document.getElementById('lightbox');
+function openLightbox(src, alt){
+    const img = lightbox.querySelector('img');
+    img.src = src; img.alt = alt;
+    lightbox.classList.add('show');
+}
+function closeLightbox(){ lightbox.classList.remove('show'); }
+lightbox.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
+/* ================= INIT ================= */
+document.addEventListener('DOMContentLoaded', () => {
+    try{
+        const saved = localStorage.getItem('crRewardLang');
+        if(saved === 'zh' || saved === 'en') LANG = saved;
+    }catch(e){}
+
+    document.getElementById('langSwitch').addEventListener('click', e => {
+        const btn = e.target.closest('button[data-lang]');
+        if(!btn) return;
+        LANG = btn.dataset.lang;
+        try{ localStorage.setItem('crRewardLang', LANG); }catch(err){}
+        renderAll();
+    });
+
+    let timer = null;
+    document.getElementById('searchInput').addEventListener('input', e => {
+        clearTimeout(timer);
+        const v = e.target.value;
+        timer = setTimeout(() => { KEYWORD = v; renderTable(); }, 150);
+    });
+
+    renderAll();
+});
 </script>
 </body>
 </html>
